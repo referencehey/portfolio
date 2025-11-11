@@ -20,6 +20,17 @@ body {
     overflow-x: hidden;
 }
 
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+/* Navigation Links */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -32,15 +43,6 @@ body {
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--accent);
-    text-decoration: none;
-    position: relative;
-    padding-left: 2.5rem;
 }
 
 .nav-links {
@@ -72,6 +74,8 @@ body {
     width: 100%;
 }
 
+/* About Me */
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -91,22 +95,6 @@ body {
     position: relative;
 }
 
-.profile-img {
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--accent);
-    box-shadow: 0 0 50px var(--accent-glow);
-    animation: float 3s ease-in-out infinite;
-    filter: grayscale(0.2) contrast(1.1);
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
 .hero h1 {
     font-size: 4rem;
     margin-bottom: 1.5rem;
@@ -122,27 +110,93 @@ body {
     max-width: 600px;
 }
 
+/* Profile */
+
+.profile-img {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 50px var(--accent-glow);
+    animation: float 3s ease-in-out infinite;
+    filter: grayscale(0.2) contrast(1.1);
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.profile-img:hover {
+    transform: scale(1.1);
+}
+
+@keyframes clickShrink {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.85); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-40px); }
+}
+
+/* Contact Button */
+
 .cta-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 1rem 2rem;
-    background: linear-gradient(45deg, var(--accent), #0066ff);
+    border-radius: 15px;
+    font-weight: 600;
     color: white;
-    border-radius: 8px;
     text-decoration: none;
-    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(45deg, #59c6ff, #0066ff);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+
+.cta-button:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(89,198,255,0.4);
+}
+
+.wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    transform: scale(1.5) translateY(0.1em);
+}
+
+.cta-button:hover .wave {
+    animation: waveHand 3s ease-in-out 0s infinite;
+}
+
+@keyframes waveHand {
+    0%, 100% { transform: rotate(0deg) scale(1.5) translateY(0.1em); }
+    10% { transform: rotate(14deg) scale(1.5) translateY(0.1em); }
+    20% { transform: rotate(-8deg) scale(1.5) translateY(0.1em); }
+    30% { transform: rotate(14deg) scale(1.5) translateY(0.1em); }
+    40% { transform: rotate(-4deg) scale(1.5) translateY(0.1em); }
+    50% { transform: rotate(10deg) scale(1.5) translateY(0.1em); }
+    60%, 100% { transform: rotate(0deg) scale(1.5) translateY(0.1em); }
+}
+
+/* Skills Tab */
 
 .skills {
     padding: 5rem 5%;
     background: var(--darker-bg);
 }
 
-.skills-grid {
+.skills h2 {
+    font-size: 2rem;
+}
+
+.skill-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 3rem;
     margin-top: 3rem;
 }
 
@@ -167,12 +221,55 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Projects Tab */
+
+.projects {
+    padding: 5rem 5%;
+    background: var(--darker-bg);
+}
+
+.projects h2 {
+    font-size: 2rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.project-card {
+    padding: 2rem;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.project-card i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+
 footer {
     background: var(--darker-bg);
     padding: 3rem 5%;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* Social Links */
 
 .social-links {
     display: flex;
