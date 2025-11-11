@@ -8,8 +8,8 @@
 :root {
     --dark-bg: #0a0a0a;
     --darker-bg: #050505;
-    --accent: #2ecc71;
-    --accent-glow: rgba(46, 204, 113, 0.4);
+    --accent: #59c6ff;
+    --accent-glow: rgba(0, 119, 255, 0.4);
     --text: #ffffff;
 }
 
@@ -125,7 +125,7 @@ body {
 .cta-button {
     display: inline-block;
     padding: 1rem 2rem;
-    background: linear-gradient(45deg, var(--accent), #27ae60);
+    background: linear-gradient(45deg, var(--accent), #0066ff);
     color: white;
     border-radius: 8px;
     text-decoration: none;
@@ -175,14 +175,51 @@ footer {
 }
 
 .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.social-links a {
+    position: relative;
     color: var(--text);
     font-size: 1.5rem;
+    text-decoration: none;
     transition: all 0.3s ease;
+}
+
+.social-links a:visited {
+    color: var(--text);
 }
 
 .social-links a:hover {
     color: var(--accent);
     transform: translateY(-3px);
+}
+
+.social-links a[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.social-links a[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
 }
 
 @media (max-width: 768px) {
