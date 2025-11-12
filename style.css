@@ -149,6 +149,35 @@ body {
     max-width: 600px;
 }
 
+.typewriter-container {
+  display: inline-block;
+  position: relative;
+  white-space: pre-wrap;
+  font-size: 4rem;
+  line-height: 1.2;
+}
+
+.typed {
+  display: inline;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+.blink {
+  animation: blinkCursor 1.5s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  50% { opacity: 0; }
+}
+
 /* Profile */
 
 .profile-img {
@@ -299,6 +328,16 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Contact */
+.contact {
+    padding: 5rem 5%;
+    background: var(--darker-bg);
+}
+
+.contact h2 {
+    font-size: 2rem;
+}
+
 /* Footer */
 
 footer {
@@ -357,6 +396,20 @@ footer {
     opacity: 1;
     transform: translateX(-50%) translateY(-5px);
 }
+
+/* Fade Animation */
+.fade-section {
+  opacity: 0;
+  transform: translateY(4rem);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Misc */
 
 @media (max-width: 768px) {
     .hero {
