@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'JetBrains Mono', monospace;
+    font-family: 'Segoe UI';
 }
 
 :root {
@@ -16,12 +16,13 @@
 body {
     background-color: var(--darker-bg);
     color: var(--text);
+    font-size: 1.2rem;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--accent);
     text-decoration: none;
@@ -86,6 +87,7 @@ body {
 
 .nav-links {
     display: flex;
+    font-size: 1.5rem;
     gap: 2rem;
     list-style: none;
 }
@@ -113,7 +115,7 @@ body {
     width: 100%;
 }
 
-/* About Me */
+/* Home */
 
 .hero {
     min-height: 100vh;
@@ -135,7 +137,7 @@ body {
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
     margin-bottom: 1.5rem;
     background: linear-gradient(45deg, var(--accent) 30%, #ffffff 70%);
     background-clip: text;
@@ -143,7 +145,7 @@ body {
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-bottom: 2rem;
     opacity: 0.9;
     max-width: 600px;
@@ -251,10 +253,6 @@ body {
     background: var(--darker-bg);
 }
 
-.skills h2 {
-    font-size: 2rem;
-}
-
 .skill-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -278,7 +276,7 @@ body {
 }
 
 .skill-card i {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--accent);
     margin-bottom: 1rem;
 }
@@ -288,10 +286,6 @@ body {
 .projects {
     padding: 5rem 5%;
     background: var(--darker-bg);
-}
-
-.projects h2 {
-    font-size: 2rem;
 }
 
 .project-grid {
@@ -317,7 +311,7 @@ body {
 }
 
 .project-card i {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--accent);
     margin-bottom: 1rem;
 }
@@ -325,6 +319,7 @@ body {
 .project-icon {
     margin-top: 2rem;
     border-radius: 10%;
+    border: 1px solid var(--accent);
     box-shadow: 0 0 50px var(--accent-glow);
     margin-bottom: 2rem;
 }
@@ -355,8 +350,32 @@ body {
     background: var(--darker-bg);
 }
 
-.contact h2 {
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.contact-card {
+    padding: 2rem;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.contact-card i {
     font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
 }
 
 /* Footer */
@@ -431,6 +450,23 @@ footer {
 }
 
 /* Misc */
+
+.highlight {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.highlight2 {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.highlight3 {
+    color: var(--accent);
+    font-weight: bold;
+}
 
 @media (max-width: 768px) {
     .hero {

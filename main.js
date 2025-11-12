@@ -9,32 +9,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     e.preventDefault();
 
     const target = document.querySelector(this.getAttribute('href'));
-    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    if (!target) return;
+
     const viewportHeight = window.innerHeight;
     const targetRect = target.getBoundingClientRect();
 
-    // Calculate the Y position so the section is centered vertically
+    // Center the section vertically
     const targetY = targetRect.top + window.pageYOffset - (viewportHeight / 2) + (targetRect.height / 2);
 
     const startY = window.pageYOffset;
     const distance = targetY - startY;
-    const duration = 800; // scroll duration in ms
+    const duration = 1000; // duration in ms
     let startTime = null;
 
-    // Smooth easing function
-    function easeInOutQuad(t) {
-      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    // Smooth easing function (easeOutCubic for smooth stop)
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
     }
 
     function animateScroll(currentTime) {
       if (!startTime) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const eased = easeInOutQuad(progress);
+      const eased = easeOutCubic(progress);
 
       window.scrollTo(0, startY + distance * eased);
 
-      if (elapsed < duration) {
+      if (progress < 1) {
         requestAnimationFrame(animateScroll);
       }
     }
@@ -42,7 +43,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     requestAnimationFrame(animateScroll);
   });
 });
-
 
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -58,7 +58,7 @@ menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-/* About Me */
+/* Home */
 const typedSpan = document.querySelector('.typed');
 const cursor = document.querySelector('.cursor');
 
