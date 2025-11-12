@@ -181,8 +181,8 @@ body {
 /* Profile */
 
 .profile-img {
-    width: 400px;
-    height: 400px;
+    width: 30rem;
+    height: 30rem;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--accent);
@@ -195,12 +195,6 @@ body {
 
 .profile-img:hover {
     transform: scale(1.1);
-}
-
-@keyframes clickShrink {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.85); }
-    100% { transform: scale(1); }
 }
 
 @keyframes float {
@@ -326,6 +320,33 @@ body {
     font-size: 2.5rem;
     color: var(--accent);
     margin-bottom: 1rem;
+}
+
+.project-icon {
+    margin-top: 2rem;
+    border-radius: 10%;
+    box-shadow: 0 0 50px var(--accent-glow);
+    margin-bottom: 2rem;
+}
+
+.project-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(45deg, #59c6ff, #0066ff);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(89,198,255,0.4);
 }
 
 /* Contact */

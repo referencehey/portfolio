@@ -4,17 +4,45 @@ function isMobile() {
 }
 
 /* Navigation Bar */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
 
-document.querySelectorAll('a[href^="#').forEach
-(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute
-        ('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
+    const target = document.querySelector(this.getAttribute('href'));
+    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    const viewportHeight = window.innerHeight;
+    const targetRect = target.getBoundingClientRect();
+
+    // Calculate the Y position so the section is centered vertically
+    const targetY = targetRect.top + window.pageYOffset - (viewportHeight / 2) + (targetRect.height / 2);
+
+    const startY = window.pageYOffset;
+    const distance = targetY - startY;
+    const duration = 800; // scroll duration in ms
+    let startTime = null;
+
+    // Smooth easing function
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    function animateScroll(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutQuad(progress);
+
+      window.scrollTo(0, startY + distance * eased);
+
+      if (elapsed < duration) {
+        requestAnimationFrame(animateScroll);
+      }
+    }
+
+    requestAnimationFrame(animateScroll);
+  });
 });
+
 
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
