@@ -15,7 +15,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const targetRect = target.getBoundingClientRect();
 
     // Adjusted scroll position
-    const navbarHeight = 70; // adjust if your navbar height differs
+    const navbarHeight = 100; // adjust if your navbar height differs
     const targetY = isMobile()
       ? targetRect.top + window.pageYOffset - navbarHeight // top scroll with slight offset
       : targetRect.top + window.pageYOffset - (viewportHeight / 2) + (targetRect.height / 2); // centered on desktop
