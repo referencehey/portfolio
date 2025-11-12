@@ -14,15 +14,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const viewportHeight = window.innerHeight;
     const targetRect = target.getBoundingClientRect();
 
-    // Center the section vertically
-    const targetY = targetRect.top + window.pageYOffset - (viewportHeight / 2) + (targetRect.height / 2);
+    // Adjusted scroll position
+    const navbarHeight = 70; // adjust if your navbar height differs
+    const targetY = isMobile()
+      ? targetRect.top + window.pageYOffset - navbarHeight // top scroll with slight offset
+      : targetRect.top + window.pageYOffset - (viewportHeight / 2) + (targetRect.height / 2); // centered on desktop
 
     const startY = window.pageYOffset;
     const distance = targetY - startY;
-    const duration = 1000; // duration in ms
+    const duration = 1000;
     let startTime = null;
 
-    // Smooth easing function (easeOutCubic for smooth stop)
     function easeOutCubic(t) {
       return 1 - Math.pow(1 - t, 3);
     }
@@ -45,10 +47,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    window.scrollY > 50 ?
-    navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.98)' :
-    navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)' ;
+  const navbar = document.querySelector('.navbar');
+  window.scrollY > 50 ?
+  navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.98)' :
+  navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)' ;
 });
 
 const menuToggle = document.querySelector('.menu-toggle');
