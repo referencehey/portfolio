@@ -18,6 +18,13 @@ window.addEventListener('scroll', () => {
     navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)' ;
 });
 
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
 /* Contact Button */
 
 const button = document.querySelector('.cta-button');
@@ -60,3 +67,22 @@ button.addEventListener('mouseleave', () => {
     cancelAnimationFrame(animationFrame);
     animationFrame = requestAnimationFrame(step);
 });
+
+/* Skill and Project Cards */
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+}
+
+if (isMobile()) {
+  const hoverElements = document.querySelectorAll('.skill-card, .project-card');
+
+  hoverElements.forEach(card => {
+    card.addEventListener('touchstart', () => {
+      card.classList.add('hover');
+    });
+
+    card.addEventListener('touchend', () => {
+      setTimeout(() => card.classList.remove('hover'), 400);
+    });
+  });
+}
