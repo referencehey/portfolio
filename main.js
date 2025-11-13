@@ -11,14 +11,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(this.getAttribute('href'));
     if (!target) return;
 
-    const viewportHeight = window.innerHeight;
-    const targetRect = target.getBoundingClientRect();
+    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const navbarHeightRem = 6;
+    const navbarHeight = navbarHeightRem * rootFontSize;
 
-    // Adjusted scroll position
-    const navbarHeight = 100; // adjust if your navbar height differs
-    const targetY = isMobile()
-      ? targetRect.top + window.pageYOffset - navbarHeight // top scroll with slight offset
-      : targetRect.top + window.pageYOffset - (viewportHeight / 2) + (targetRect.height / 2); // centered on desktop
+    const targetRect = target.getBoundingClientRect();
+    const targetY = targetRect.top + window.pageYOffset - navbarHeight;
 
     const startY = window.pageYOffset;
     const distance = targetY - startY;
@@ -45,6 +43,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     requestAnimationFrame(animateScroll);
   });
 });
+
 
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar');
@@ -104,7 +103,6 @@ type(initialText, () => {
 });
 
 /* Contact Button */
-
 const button = document.querySelector('.cta-button');
 
 if (!isMobile()) {
