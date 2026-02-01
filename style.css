@@ -440,9 +440,11 @@ footer {
 }
 
 .social-links svg {
+    display: block;
     width: 32px;
     height: 32px;
     fill: currentColor;
+    overflow: visible;
 }
 
 .social-links a[data-tooltip]::after {
