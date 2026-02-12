@@ -178,3 +178,137 @@ const observer = new IntersectionObserver(
 );
 
 fadeSections.forEach(section => observer.observe(section));
+
+/* Info Accordion */
+const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+
+function setAccordionItemState(item, shouldOpen) {
+  const trigger = item.querySelector('.accordion-trigger');
+  const content = item.querySelector('.accordion-content');
+  const icon = item.querySelector('.accordion-icon');
+
+  if (!trigger || !content || !icon) return;
+
+  item.classList.toggle('is-open', shouldOpen);
+  trigger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+  icon.textContent = shouldOpen ? '−' : '+';
+  content.style.opacity = shouldOpen ? '1' : '0';
+  content.style.maxHeight = shouldOpen ? `${content.scrollHeight}px` : '0px';
+}
+
+accordionTriggers.forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const item = trigger.closest('.accordion-item');
+    const card = trigger.closest('.info-card');
+    if (!item || !card) return;
+
+    const isOpening = !item.classList.contains('is-open');
+
+    card.querySelectorAll('.accordion-item').forEach(sibling => {
+      setAccordionItemState(sibling, false);
+    });
+
+    setAccordionItemState(item, isOpening);
+  });
+});
+
+document.querySelectorAll('.info-card .accordion-item').forEach(item => {
+  const shouldOpen = item.classList.contains('is-open');
+  setAccordionItemState(item, shouldOpen);
+});
+
+/* Skill Details Toggle */
+const skillToggles = document.querySelectorAll('.skill-toggle');
+
+function setSkillDetailState(card, shouldOpen) {
+  const toggle = card.querySelector('.skill-toggle');
+  const extra = card.querySelector('.skill-extra');
+
+  if (!toggle || !extra) return;
+
+  card.classList.toggle('is-open', shouldOpen);
+  toggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+  toggle.textContent = shouldOpen ? 'Hide details' : 'Show details';
+  extra.style.opacity = shouldOpen ? '1' : '0';
+  extra.style.maxHeight = shouldOpen ? `${extra.scrollHeight}px` : '0px';
+}
+
+skillToggles.forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const card = toggle.closest('.skill-card');
+    if (!card) return;
+
+    const shouldOpen = !card.classList.contains('is-open');
+    setSkillDetailState(card, shouldOpen);
+  });
+});
+
+document.querySelectorAll('.skill-card').forEach(card => {
+  setSkillDetailState(card, false);
+});
+
+/* Contact Interactions */
+const contactCopyButtons = document.querySelectorAll('.contact-copy');
+
+async function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const tempInput = document.createElement('input');
+  tempInput.value = text;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand('copy');
+  tempInput.remove();
+}
+
+contactCopyButtons.forEach(button => {
+  button.addEventListener('click', async () => {
+    const value = button.getAttribute('data-copy');
+    if (!value) return;
+
+    const initialLabel = button.textContent;
+
+    try {
+      await copyToClipboard(value);
+      button.textContent = 'Copied!';
+      button.classList.add('copied');
+    } catch {
+      button.textContent = 'Failed';
+    }
+
+    setTimeout(() => {
+      button.textContent = initialLabel;
+      button.classList.remove('copied');
+    }, 1300);
+  });
+});
+
+const inquiryItemToggles = document.querySelectorAll('.inquiry-item-toggle');
+
+function setInquiryItemState(item, shouldOpen) {
+  const toggle = item.querySelector('.inquiry-item-toggle');
+  const content = item.querySelector('.inquiry-item-content');
+
+  if (!toggle || !content) return;
+
+  item.classList.toggle('is-open', shouldOpen);
+  toggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+  content.style.maxHeight = shouldOpen ? `${content.scrollHeight}px` : '0px';
+}
+
+inquiryItemToggles.forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const item = toggle.closest('.inquiry-item');
+    if (!item) return;
+
+    const shouldOpen = !item.classList.contains('is-open');
+    setInquiryItemState(item, shouldOpen);
+  });
+});
+
+document.querySelectorAll('.inquiry-item').forEach(item => {
+  setInquiryItemState(item, false);
+});
